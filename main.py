@@ -4,14 +4,14 @@ import modules
 
 
 
-w_ch_1 = modules.Checker('white', pos=[250, 50])
+b_ch_1 = modules.Checker('black', pos=[250, 50])
 
-
+x_y_p = modules.draw_chessplate(settings.screen)
+print(x_y_p)
 while True:
-    modules.draw_chessplate(settings.screen)
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
-    w_ch_1.draw(settings.screen)
+    b_ch_1.draw(settings.screen)
     pg.display.flip()
