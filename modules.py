@@ -7,13 +7,20 @@ class Checker:
         self.__queen = queen
         self.__pos = pos
         self.__radius = size / 2
-        self.__drag = False
+        self._drag = False
+        self._offset = [0, 0]
 
-    def set_pos(self, x: float, y: float) -> None:
-        self.__pos = [x, y]
+    def set_offset(self, pos: list[float, float]) -> None:
+        self._offset = pos
+
+    def get_pos(self) -> list:
+        return self.__pos
+
+    def set_pos(self, pos: list[float, float]) -> None:
+        self.__pos = pos
 
     def dragging(self, status: bool) -> None:
-        self.__drag = status
+        self._drag = status
 
     def draw(self, screen) -> None:
         w_color = (235, 235, 235)
@@ -74,5 +81,7 @@ def new_game() -> object:
 
 
 def check_collision(pos1: list[float, float], pos2: list[float, float], radius: int) -> bool:
-    dist = ((pos1[0] - pos2[0]) * 2 + (pos1[1] - pos2[1]) * 2) ** 0.5
+    dist = ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
     return dist <= radius * 2
+
+
